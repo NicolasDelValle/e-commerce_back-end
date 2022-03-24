@@ -19,6 +19,10 @@ module.exports = (sequelize, Model, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      details: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
       imageUrl: {
         type: DataTypes.STRING,
       },
@@ -31,7 +35,7 @@ module.exports = (sequelize, Model, DataTypes) => {
         allowNull: false,
       },
       featured: {
-        type: BOOLEAN,
+        type: DataTypes.BOOLEAN,
       },
       slug: {
         type: DataTypes.STRING,
