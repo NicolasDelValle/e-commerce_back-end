@@ -19,6 +19,5 @@ const Category = require("./Category")(sequelize, Model, DataTypes);
 User.hasMany(Order);
 Order.belongsTo(User);
 Category.hasMany(Product);
-Order.hasMany(Product);
 
 // module.exports = {sequelize,User,Product,Category,Order,};
