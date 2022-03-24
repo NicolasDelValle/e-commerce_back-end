@@ -15,14 +15,14 @@ module.exports = (sequelize, Model, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      Description: {
+      description: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
       imageUrl: {
         type: DataTypes.STRING,
       },
-      Price: {
+      price: {
         type: DataTypes.DECIMAL.UNSIGNED,
         allowNull: false,
       },

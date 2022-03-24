@@ -1,4 +1,6 @@
-module.exports = (sequelize, Model, DataTypes) => {
+const { DataTypes } = require("sequelize");
+
+module.exports = (sequelize, Model) => {
   class Order extends Model {}
 
   Order.init(
@@ -8,12 +10,9 @@ module.exports = (sequelize, Model, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      user: {
-        type: DataTypes.STRING,
-        // FOREIGN KEY?
-      },
+
       productList: {
-        type: DataTypes.TEXT, // JSON
+        type: DataTypes.JSON,
         allowNull: false,
       },
       status: {
