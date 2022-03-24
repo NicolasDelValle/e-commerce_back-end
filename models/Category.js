@@ -3,9 +3,13 @@ module.exports = (sequelize, Model, DataTypes) => {
 
 	Category.init(
 		{
+			id: {
+				type: DataTypes.BIGINT.UNSIGNED,
+				primaryKey: true,
+				autoIncrement: true,
+			},
 			name: {
-				type: DataTypes.String,
-				allowNull: false,
+				type: DataTypes.STRING,
 			},
 		},
 		{
