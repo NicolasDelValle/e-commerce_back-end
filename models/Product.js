@@ -1,7 +1,7 @@
-// const { type } = require("express/lib/response");
+const { DataTypes } = require("sequelize");
 // const { BOOLEAN } = require("sequelize/types");
 
-module.exports = (sequelize, Model, DataTypes) => {
+module.exports = (sequelize, Model) => {
   class Product extends Model {}
 
   Product.init(

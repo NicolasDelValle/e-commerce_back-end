@@ -1,4 +1,6 @@
-module.exports = (sequelize, Model, DataTypes) => {
+const { DataTypes } = require("sequelize");
+
+module.exports = (sequelize, Model) => {
   class User extends Model {}
 
   User.init(
@@ -35,7 +37,7 @@ module.exports = (sequelize, Model, DataTypes) => {
         allowNull: false,
         unique: true,
       },
-      productList: {
+      orderList: {
         type: DataTypes.JSON,
         allowNull: false,
         unique: true,

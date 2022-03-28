@@ -10,9 +10,8 @@ module.exports = (sequelize, Model) => {
         primaryKey: true,
         autoIncrement: true,
       },
-
       productList: {
-        type: DataTypes.JSON,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       status: {
