@@ -40,7 +40,6 @@ module.exports = (sequelize, Model) => {
       orderList: {
         type: DataTypes.JSON,
         allowNull: false,
-        unique: true,
       },
     },
     {

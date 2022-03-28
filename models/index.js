@@ -1,4 +1,4 @@
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Sequelize, Model } = require("sequelize");
 
 const sequelize = new Sequelize(
   process.env.DB_DATABASE, // Ej: hack_academy_db
@@ -11,10 +11,10 @@ const sequelize = new Sequelize(
   }
 );
 
-const Category = require("./Category")(sequelize, Model, DataTypes);
-const Product = require("./Product")(sequelize, Model, DataTypes);
-const User = require("./User")(sequelize, Model, DataTypes);
-const Order = require("./Order")(sequelize, Model, DataTypes);
+const Category = require("./Category")(sequelize, Model);
+const Product = require("./Product")(sequelize, Model);
+const User = require("./User")(sequelize, Model);
+const Order = require("./Order")(sequelize, Model);
 
 User.hasMany(Order);
 Order.belongsTo(User);

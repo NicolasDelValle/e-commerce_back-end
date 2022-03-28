@@ -1,22 +1,24 @@
-module.exports = (sequelize, Model, DataTypes) => {
-	class Category extends Model {}
+const { DataTypes } = require("sequelize");
 
-	Category.init(
-		{
-			id: {
-				type: DataTypes.BIGINT.UNSIGNED,
-				primaryKey: true,
-				autoIncrement: true,
-			},
-			name: {
-				type: DataTypes.STRING,
-			},
-		},
-		{
-			sequelize,
-			modelName: "category",
-		}
-	);
+module.exports = (sequelize, Model) => {
+  class Category extends Model {}
 
-	return Category;
+  Category.init(
+    {
+      id: {
+        type: DataTypes.BIGINT.UNSIGNED,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+      },
+    },
+    {
+      sequelize,
+      modelName: "category",
+    }
+  );
+
+  return Category;
 };
