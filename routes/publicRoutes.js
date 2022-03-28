@@ -3,12 +3,12 @@ const publicRouter = express.Router();
 
 // Rutas del Públicas:
 //registro
-userRouter.post("/users");
+publicRouter.post("/users");
 //Logueo
-userRouter.post("/tokens");
+publicRouter.post("/tokens");
 //Todos los productos
-userRouter.get("/products");
+publicRouter.get("/products");
 //Un producto
-userRouter.get("/products/:slug");
+publicRouter.get("/products/:slug");
 
 module.exports = publicRouter;
