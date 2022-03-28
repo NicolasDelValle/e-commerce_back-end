@@ -12,8 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 
 routes(app);
 
-dbInitialSetup();
+dbInitialSetup(); // Comentar para no correr DB cada vez.
 
 app.listen(APP_PORT, () =>
-  console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}!\n`)
+	console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}!\n`)
 );
