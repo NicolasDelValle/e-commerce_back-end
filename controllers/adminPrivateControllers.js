@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Product } = require("../models");
 
 async function index(req, res) {
   const users = await User.findAll();
@@ -37,7 +37,7 @@ async function update(req, res) {
   }
 }
 
-async function destroy(req, res) {
+async function destroyUser(req, res) {
   try {
     const { id } = req.params;
     const user = await User.findByPk(id);
@@ -55,9 +55,61 @@ async function destroy(req, res) {
       .json({ message: "Usuario no encontrado o token incorrecto" });
   }
 }
+
+async function store(req, res) {
+  const {
+    name,
+    description,
+    details,
+    imageUrl,
+    stock,
+    price,
+    featured,
+    slug,
+    categoryId,
+  } = req.body;
+  if (req.body) {
+    const newProduct = await Product.create({
+      name: name,
+      description: description,
+      details: details,
+      imageUrl: imageUrl,
+      stock: stock,
+      price: price,
+      featured: featured,
+      slug: slug,
+      categoryId: categoryId,
+    });
+    res.status(200).json(newProduct);
+  }
+}
+
+async function destroyProduct(req, res) {
+  try {
+    const { slug } = req.params;
+    const product = await User.find({ where: { slug: slug } });
+    console.log(product);
+    if (user) {
+      const productDelete = await User.destroy({
+        where: { id: id },
+      });
+      res
+        .status(200)
+        .json("El siguiente producto fue eliminado" + productDelete);
+    } else {
+      res.status(404).json("El usuario indicado no existe");
+    }
+  } catch (err) {
+    res
+      .status(404)
+      .json({ message: "Usuario no encontrado o token incorrecto" });
+  }
+}
 module.exports = {
   index,
   show,
   update,
-  destroy,
+  destroyUser,
+  store,
+  destroyProduct,
 };

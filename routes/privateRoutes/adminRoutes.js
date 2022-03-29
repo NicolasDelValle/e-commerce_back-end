@@ -4,7 +4,9 @@ const {
   index,
   show,
   update,
-  destroy,
+  destroyUser,
+  store,
+  destroyProduct,
 } = require("../../controllers/adminPrivateControllers");
 
 // Listar todos los usuarios
@@ -14,11 +16,11 @@ adminRouter.get("/users/:id", show);
 // Editar un usuario
 adminRouter.patch("/users/:id", update);
 //Borrar un usuario
-adminRouter.delete("/users/:id", destroy);
+adminRouter.delete("/users/:id", destroyUser);
 // Crea un producto
-adminRouter.post("/products");
+adminRouter.post("/products", store);
 // Borra un producto
-adminRouter.delete("/products/:slug");
+adminRouter.delete("/products/:slug", destroyProduct);
 // Edita un producto
 adminRouter.patch("/products/:slug");
 
