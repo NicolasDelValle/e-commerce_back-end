@@ -1,20 +1,20 @@
 const express = require("express");
 const adminRouter = express.Router();
+const { index, show } = require("../../controllers/adminPrivateControllers");
 
-// Rutas del Públicas:
 // Listar todos los usuarios
-adminRouter.get("/admin/users");
+adminRouter.get("/users", index);
 //Listar un usario
-adminRouter.get("/admin/users/:id");
+adminRouter.get("/users/:id", show);
 // Editar un usuario
-adminRouter.put("/admin/users/:id");
+adminRouter.put("/users/:id");
 //Borrar un usuario
-adminRouter.delete("/admin/users/:id");
+adminRouter.delete("/users/:id");
 // Crea un producto
-adminRouter.post("/admin/products");
+adminRouter.post("/products");
 // Borra un producto
-adminRouter.delete("/admin/admin/products/:slug");
+adminRouter.delete("/products/:slug");
 // Edita un producto
-adminRouter.put("/admin/products/:slug");
+adminRouter.put("/products/:slug");
 
 module.exports = adminRouter;
