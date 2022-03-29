@@ -87,22 +87,19 @@ async function store(req, res) {
 async function destroyProduct(req, res) {
   try {
     const { slug } = req.params;
-    const product = await User.find({ where: { slug: slug } });
-    console.log(product);
-    if (user) {
-      const productDelete = await User.destroy({
-        where: { id: id },
-      });
+
+    const productDelete = await Product.findOne({ where: { slug: slug } });
+
+    if (productDelete) {
+      const productDelete = await Product.destroy({ where: { slug: slug } });
       res
         .status(200)
         .json("El siguiente producto fue eliminado" + productDelete);
     } else {
-      res.status(404).json("El usuario indicado no existe");
+      res.status(404).json({ message: "Producto no encontrado" });
     }
   } catch (err) {
-    res
-      .status(404)
-      .json({ message: "Usuario no encontrado o token incorrecto" });
+    console.log(err);
   }
 }
 module.exports = {
