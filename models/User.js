@@ -45,6 +45,9 @@ module.exports = (sequelize, Model) => {
 			orderList: {
 				type: DataTypes.JSON,
 			},
+			tokens: {
+				type: DataTypes.JSON,
+			},
 			isAdmin: {
 				type: DataTypes.BOOLEAN,
 				allowNull: false,
@@ -57,9 +60,10 @@ module.exports = (sequelize, Model) => {
 		}
 	);
 
-	// USAR FOR
-	User.beforeBulkCreate(async (user, options) => {
-		user.password = await bcrypt.hash(user.password, 4);
+	User.beforeBulkCreate(async (users, options) => {
+		for (const user of users) {
+			user.password = await bcrypt.hash(user.password, 4);
+		}
 	});
 
 	return User;

@@ -53,5 +53,5 @@ module.exports = async () => {
 	];
 
 	await Product.bulkCreate(products);
-	console.log("Los productos fueron creados");
+	console.log("[Seeders] Los productos fueron creados");
 };
