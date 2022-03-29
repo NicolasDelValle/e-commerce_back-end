@@ -45,5 +45,5 @@ module.exports = async () => {
 	];
 
 	await User.bulkCreate(users);
-	console.log("Los usuarios fueron creados");
+	console.log("[Seeders] Los usuarios fueron creados");
 };

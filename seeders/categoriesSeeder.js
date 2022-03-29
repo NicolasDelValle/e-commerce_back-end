@@ -9,5 +9,5 @@ module.exports = async () => {
 	];
 
 	await Category.bulkCreate(categories);
-	console.log("Las categorías fueron creadas");
+	console.log("[Seeders] Las categorías fueron creadas");
 };
