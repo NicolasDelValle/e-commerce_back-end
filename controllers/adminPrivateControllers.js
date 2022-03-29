@@ -23,7 +23,7 @@ async function update(req, res) {
   const { id } = req.params;
   try {
     const userUpdated = await User.findByPk(id);
-    console.log(userUpdated);
+
     if (!userUpdated) {
       res.status(404).json({ message: `No existe user` });
     } else {
@@ -37,7 +37,24 @@ async function update(req, res) {
   }
 }
 
-async function destroy(req, res) {}
+async function destroy(req, res) {
+  try {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+    if (user) {
+      const userDelete = await User.destroy({
+        where: { id: id },
+      });
+      res.status(200).json("El siguiente usuario fue eliminado" + userDelete);
+    } else {
+      res.status(404).json("El usuario indicado no existe");
+    }
+  } catch (err) {
+    res
+      .status(404)
+      .json({ message: "Usuario no encontrado o token incorrecto" });
+  }
+}
 module.exports = {
   index,
   show,
