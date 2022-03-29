@@ -14,5 +14,5 @@ async function createToken(req, res) {
     res.status(401).json({ message: "Ese email o contraseña es incorrecto" });
   }
 }
-async function destroyToken(req, res) {}
-module.exports = { createToken, destroyToken };
+
+module.exports = { createToken };
