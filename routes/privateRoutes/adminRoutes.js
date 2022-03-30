@@ -9,20 +9,25 @@ const {
   destroyProduct,
   updateProduct,
 } = require("../../controllers/adminPrivateControllers");
+const checkJwt = require("express-jwt");
+adminRouter.use(
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] })
+);
+const { isAdmin } = require("../../middlewares/isAdmin");
 
 // Listar todos los usuarios
-adminRouter.get("/users", index);
+adminRouter.get("/users", isAdmin, index);
 //Listar un usario
-adminRouter.get("/users/:id", show);
+adminRouter.get("/users/:id", isAdmin, show);
 // Editar un usuario
-adminRouter.patch("/users/:id", updateUser);
+adminRouter.patch("/users/:id", isAdmin, updateUser);
 //Borrar un usuario
-adminRouter.delete("/users/:id", destroyUser);
+adminRouter.delete("/users/:id", isAdmin, destroyUser);
 // Crea un producto
-adminRouter.post("/products", store);
+adminRouter.post("/products", isAdmin, store);
 // Borra un producto
-adminRouter.delete("/products/:slug", destroyProduct);
+adminRouter.delete("/products/:slug", isAdmin, destroyProduct);
 // Edita un producto
-adminRouter.patch("/products/:slug", updateProduct);
+adminRouter.patch("/products/:slug", isAdmin, updateProduct);
 
 module.exports = adminRouter;
