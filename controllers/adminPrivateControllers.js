@@ -105,7 +105,6 @@ async function updateProduct(req, res) {
 
     if (productUpdated) {
       productUpdated.update(req.body);
-      // productUpdated.save();
       res.status(200).json(productUpdated);
     } else {
       res.status(404).json({ message: `No existe producto` });
