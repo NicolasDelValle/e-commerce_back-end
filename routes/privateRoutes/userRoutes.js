@@ -1,7 +1,6 @@
 const express = require("express");
 const userRouter = express.Router();
 
-// Rutas del Públicas:
 //Realizar un pedido
 userRouter.post("/order");
 // Muestra un pedido
