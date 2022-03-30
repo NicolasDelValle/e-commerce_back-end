@@ -18,7 +18,7 @@ async function show(req, res) {
     res.status(404).json("Ocurrio un error");
   }
 }
-async function update(req, res) {
+async function updateUser(req, res) {
   const { isAdmin } = req.body;
   const { id } = req.params;
   try {
@@ -85,28 +85,41 @@ async function store(req, res) {
 }
 
 async function destroyProduct(req, res) {
+  const { slug } = req.params;
+
+  const productDelete = await Product.findOne({ where: { slug: slug } });
+
+  if (productDelete) {
+    const productDelete = await Product.destroy({ where: { slug: slug } });
+    res.status(200).json("El siguiente producto fue eliminado" + productDelete);
+  } else {
+    res.status(404).json({ message: "Producto no encontrado" });
+  }
+}
+
+async function updateProduct(req, res) {
+  const { slug } = req.params;
+
   try {
-    const { slug } = req.params;
+    const productUpdated = await Product.findOne({ where: { slug: slug } });
 
-    const productDelete = await Product.findOne({ where: { slug: slug } });
-
-    if (productDelete) {
-      const productDelete = await Product.destroy({ where: { slug: slug } });
-      res
-        .status(200)
-        .json("El siguiente producto fue eliminado" + productDelete);
+    if (productUpdated) {
+      productUpdated.update(req.body);
+      // productUpdated.save();
+      res.status(200).json(productUpdated);
     } else {
-      res.status(404).json({ message: "Producto no encontrado" });
+      res.status(404).json({ message: `No existe producto` });
     }
   } catch (err) {
-    console.log(err);
+    res.status(404).json(err);
   }
 }
 module.exports = {
   index,
   show,
-  update,
+  updateUser,
   destroyUser,
   store,
   destroyProduct,
+  updateProduct,
 };
