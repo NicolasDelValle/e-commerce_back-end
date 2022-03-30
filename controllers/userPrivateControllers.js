@@ -21,11 +21,17 @@ async function show(req, res) {
 }
 
 async function store(req, res) {
-  //   const { id } = req.user;
+  const { id } = req.user;
   try {
-    console.log(req.user);
     if (req.body) {
-      const newProduct = await Order.create({ ...req.body });
+      const user = await User.findByPk(id);
+      console.log("usuario", user);
+      const newProduct = await Order.create({
+        ...req.body,
+        userId: user.id,
+        address: user.address,
+      });
+      console.log("compra", newProduct);
       res.status(200).json(newProduct);
     }
     res.status(404).json("Ocurrio un error");
