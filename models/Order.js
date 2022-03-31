@@ -11,18 +11,19 @@ module.exports = (sequelize, Model) => {
         autoIncrement: true,
       },
       productList: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSON,
         allowNull: false,
       },
       status: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "Procesando",
       },
       address: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      price: {
+      totalPrice: {
         type: DataTypes.BIGINT,
         allowNull: false,
       },
