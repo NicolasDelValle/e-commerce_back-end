@@ -1,7 +1,7 @@
 const { Order, Product, User } = require("../models");
 
 async function index(req, res) {
-  const orders = await Order.findAll();
+  const orders = await Order.findAll({ where: { userId: req.user.id } });
   if (orders) {
     res.status(200).json(orders);
   } else {
@@ -11,7 +11,7 @@ async function index(req, res) {
 
 async function show(req, res) {
   const { id } = req.params;
-  const order = await Order.findOne({ where: { id: id } });
+  const order = await Order.findOne({ where: { id: id, userId: req.user.id } });
 
   if (order) {
     res.status(200).json(order);
