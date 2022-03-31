@@ -22,16 +22,23 @@ async function show(req, res) {
 
 async function store(req, res) {
   const { id } = req.user;
+  console.log(req.body);
   try {
     if (req.body) {
       const user = await User.findByPk(id);
+      let precioTotal = 0;
+      for (const order of req.body.orderList) {
+        precioTotal += order.price;
+        console.log(precioTotal);
+      }
 
       const newOrder = await Order.create({
-        ...req.body,
+        productList: [{ ...req.body.orderList }],
         userId: user.id,
         address: user.address,
+        totalPrice: precioTotal,
       });
-      console.log("compra", newOrder);
+
       res.status(200).json(newOrder);
     }
     res.status(404).json("Ocurrio un error");
