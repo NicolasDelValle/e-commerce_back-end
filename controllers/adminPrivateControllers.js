@@ -57,30 +57,11 @@ async function destroyUser(req, res) {
 }
 
 async function store(req, res) {
-  const {
-    name,
-    description,
-    details,
-    imageUrl,
-    stock,
-    price,
-    featured,
-    slug,
-    categoryId,
-  } = req.body;
   if (req.body) {
-    const newProduct = await Product.create({
-      name: name,
-      description: description,
-      details: details,
-      imageUrl: imageUrl,
-      stock: stock,
-      price: price,
-      featured: featured,
-      slug: slug,
-      categoryId: categoryId,
-    });
+    const newProduct = await Product.create(req.body);
     res.status(200).json(newProduct);
+  } else {
+    res.status(400).json("Oucrrio un error al momento de crear el producto");
   }
 }
 

@@ -25,14 +25,14 @@ async function store(req, res) {
   try {
     if (req.body) {
       const user = await User.findByPk(id);
-      console.log("usuario", user);
-      const newProduct = await Order.create({
+
+      const newOrder = await Order.create({
         ...req.body,
         userId: user.id,
         address: user.address,
       });
-      console.log("compra", newProduct);
-      res.status(200).json(newProduct);
+      console.log("compra", newOrder);
+      res.status(200).json(newOrder);
     }
     res.status(404).json("Ocurrio un error");
   } catch (error) {
