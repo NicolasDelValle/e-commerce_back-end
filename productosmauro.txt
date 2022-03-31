@@ -34,7 +34,7 @@ slug: "tabla-element-nyjah-on-point",
 }
 ,
 {
-name: "Element Nyjah On Point 8.1''",
+name: "Tabla Element Nyjah On Point 8.1''",
 description: "La Jart Danny Leon es una base de skateboard de calidad hecha de 7-ply de arce. 
 La madera de arce duro dota a esta tabla de pop adicional y longevidad adicional. 
 Una base que presenta una forma de popsicle con doble kick, que te ayuda a conseguir potentes ollies y nollies con confianza."
@@ -47,7 +47,7 @@ slug: "tabla-jart-danny-leon",
 }
 ,
 {
-name: "Santa Cruz Johnson Beach",
+name: "Tabla Santa Cruz Johnson Beach",
 description: "Santa Cruz Skateboards Blake Johnson Wolf Two deck con arte de Tallboy @tallboy666. 
 7 capas de arce norteamericano prensadas individualmente con epoxi que crean una plataforma fuerte y receptiva!"
 details: ["Material: 7 capas (Canadian Maple)","Ancho: 8.375” (21.3cm),"Largo: 32” (81.3 cm)","Wheelbase: 14.19” (36 cm)"],
