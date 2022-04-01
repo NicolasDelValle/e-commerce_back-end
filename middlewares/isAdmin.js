@@ -5,7 +5,7 @@ async function isAdmin(req, res, next) {
   const user = await User.findByPk(id);
 
   if (!user.isAdmin) {
-    return res.status(401).json({ message: "No es admin" });
+    return res.status(403).json({ message: "No es admin" });
   }
 
   next();
