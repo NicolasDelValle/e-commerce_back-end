@@ -7,6 +7,7 @@ price: 5490,
 stock: 30,
 featured: true,
 slug: "tabla-girl-anderson",
+categoryId: 1,
 }
 ,
 {
@@ -18,10 +19,11 @@ price: 5990,
 stock: 48,
 featured: false,
 slug: "tabla-vallely-mammoth",
+categoryId: 1,
 }
 ,
 {
-name: "Element Nyjah On Point 8.1''",
+name: "Tabla Element Nyjah On Point 8.1''",
 description: "Construcción: 100% maple, 7 laminas de maple canadiense. 
 Capas mas delgadas y resistentes para mayor ligereza.
 Rendimiento cóncavo que agrega un toque adicional."
@@ -31,6 +33,7 @@ price: 5990,
 stock: 80,
 featured: false,
 slug: "tabla-element-nyjah-on-point",
+categoryId: 1,
 }
 ,
 {
@@ -44,6 +47,7 @@ price: 4090,
 stock: 10,
 featured: true,
 slug: "tabla-jart-danny-leon",
+categoryId: 1,
 }
 ,
 {
@@ -56,6 +60,7 @@ price: 4690,
 stock: 25,
 featured: false,
 slug: "tabla-santa-cruz-johnson-beach",
+categoryId: 1,
 }
 ,
 {
@@ -67,6 +72,7 @@ price: 2290,
 stock: 140,
 featured: false,
 slug: "ruedas-slime-balls-snot-rockets",
+categoryId: 3,
 }
 ,
 {
@@ -79,6 +85,7 @@ price: 3190,
 stock: 99,
 featured: false,
 slug: "ruedas-spitfire-formula-classic",
+categoryId: 3,
 }
 ,
 {
@@ -92,6 +99,7 @@ price: 1750,
 stock: 60,
 featured: true,
 slug: "ruedas-kimbel-kegger-barrel",
+categoryId: 3,
 }
 ,
 {
@@ -100,7 +108,44 @@ description: "Nuevo arte de Speed Balls por FALU (@falucarolei)."
 details: ["Borde cónico duro para un control máximo en cualquier terreno.","Uretano 99a de alto rendimiento."],
 imageUrl: "https://f.fcdn.app/imgs/8fae49/www.tiendarepublica.com/rep/726e/webp/catalogo/RuedaSlimeBallsBrains54mm99aRuedaSlimeBallsBrains54mm99a1/460x460/ruedas-de-skate-slime-balls-brains-speed-balls-54mm-99a-ruedas-de-skate-slime-balls-brains-speed-balls-54mm-99a.jpg",
 price: 2790,
-stock: 2790,
+stock: 200,
 featured: false,
 slug: "ruedas-slime-balls-brains",
+categoryId: 3,
+}
+,
+{
+name: "Truck Pivot 149mm white/black",
+description: "Fabricados en aluminio de excelente calidad y resistentes para altas exigencias y performances. Ofrecen buena respuesta en curvas, además de deslizar super bien en diferentes tipos de superficies como hierro o concreto, por ejemplo.",
+details: ["Truck Pivot 149mm color white/black" , "Bushing dureza 95a", "Truck alto"],
+imageUrl: "https://f.fcdn.app/imgs/50534f/www.tiendarepublica.com/rep/1a5a/webp/catalogo/TruckSkateboardPivot149mmTruckSkateboardPivot149mm1/460x460/truck-skateboard-pivot-149mm-white-black-truck-skateboard-pivot-149mm-white-black.jpg",
+price: 2390,
+stock: 150,
+featured: false,
+slug: "truck-skateboard-pivot-149mm-wb",
+categoryId: 2,
+}
+,
+{
+name: "Truck Minilogo 139mm Black",
+description: "Producido en la misma fabrica que la legendaria marca de skate, mini logo reduce costos de merchandising y  diseños de truck para conseguir la mejor calidad al mejor precio de venta.",
+details: ["Set de 2 trucks", "139mm"],
+imageUrl: "https://f.fcdn.app/imgs/dbbd00/www.tiendarepublica.com/rep/80eb/webp/catalogo/8455840318488455840318481/460x460/truck-de-skate-minilogo-139mm-black-truck-de-skate-minilogo-139mm-black.jpg",
+price: 2990,
+stock: 98,
+featured: true,
+slug: "truck-skate-minilogo-139mm-b",
+categoryId: 2,
+}
+,
+{
+name: "Truck Thunder Polished 148mm",
+description: "Fundada en 1986 por Fausto Vitello y Brian Ware como parte de Deluxe Distribution (Real, Krooked, Antihero, Venture y Spitfire), Thunder Trucks se creó con la idea de fabricar los ejes de skate con mejor rendimiento. Desde que se lanzaron los primeros productos Thunder, un número cada vez mayor de skaters profesionales se han unido a la empresa como skaters y han añadido ejes de skate Thunder a sus tablas.",
+details: ["Sugerimos usar estos truck en tablas con un ancho de 8.125 - 8.375mm."],
+imageUrl: "https://f.fcdn.app/imgs/8dd39b/www.tiendarepublica.com/rep/7f16/webp/catalogo/TRUCKDESKATETHUNDERPOLISHED148TRUCKDESKATETHUNDERPOLISHED1481/460x460/truck-de-skate-thunder-polished-148-s-truck-de-skate-thunder-polished-148-s.jpg",
+price: 4090,
+stock: 40,
+featured: false,
+slug: "truck-thunder-polished-148mm",
+categoryId: 2,
 }
