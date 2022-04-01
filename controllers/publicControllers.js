@@ -1,9 +1,15 @@
-const { Product, User } = require("../models");
+const { Product, User, Category } = require("../models");
 
 async function showProducts(req, res) {
   const products = await Product.findAll();
 
   res.json(products);
+}
+
+async function showCategories(req, res) {
+  const categories = await Category.findAll();
+
+  res.json(categories);
 }
 
 async function showProduct(req, res) {
@@ -40,4 +46,4 @@ async function register(req, res) {
   }
 }
 
-module.exports = { showProducts, showProduct, register };
+module.exports = { showProducts, showProduct, register, showCategories };

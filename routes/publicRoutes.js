@@ -1,6 +1,7 @@
 const express = require("express");
 const publicRouter = express.Router();
 const {
+  showCategories,
   showProducts,
   showProduct,
   register,
@@ -17,5 +18,7 @@ publicRouter.post("/tokens", createToken);
 publicRouter.get("/products", showProducts);
 //Un producto
 publicRouter.get("/products/:slug", showProduct);
+
+publicRouter.get("/categories", showCategories);
 
 module.exports = publicRouter;
