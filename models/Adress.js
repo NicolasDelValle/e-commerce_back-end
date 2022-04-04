@@ -13,7 +13,7 @@ module.exports = (sequelize, Model) => {
       name: {
         type: DataTypes.STRING,
       },
-      estate: {
+      state: {
         type: DataTypes.STRING,
       },
       city: {
