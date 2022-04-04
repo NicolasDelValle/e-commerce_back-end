@@ -4,6 +4,7 @@ module.exports = async () => {
   const adress = [
     {
       name: "Casa",
+      estate: "Montevideo",
       city: "Montevideo",
       adress: "Rivera, Bulevar",
       number: "303",
@@ -12,6 +13,7 @@ module.exports = async () => {
     },
     {
       name: "Casa Juan",
+      estate: "Montevideo",
       city: "Montevideo",
       adress: "LA.de herrera",
       number: "43",
@@ -20,6 +22,7 @@ module.exports = async () => {
     },
     {
       name: "Trabajo",
+      estate: "Montevideo",
       city: "Montevideo",
       adress: "Rivera",
       number: "355",
@@ -28,6 +31,7 @@ module.exports = async () => {
     },
     {
       name: "Casa",
+      estate: "Montevideo",
       city: "Montevideo",
       adress: "Rivera, Bulevar",
       number: "303",
