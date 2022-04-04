@@ -1,4 +1,4 @@
-const { User, Product } = require("../models");
+const { User, Product, Category } = require("../models");
 
 async function index(req, res) {
   const users = await User.findAll();
@@ -97,6 +97,80 @@ async function updateProduct(req, res) {
     res.status(404).json(err);
   }
 }
+//ver categorias
+async function indexCategories(req, res) {
+  try {
+    const categories = await Category.findAll();
+
+    if (categories) {
+      res.status(200).json(categories);
+    } else {
+      res.status(404).json({ message: `No existen categorias` });
+    }
+  } catch (err) {
+    res.status(404).json(err);
+  }
+}
+//ver una categoria
+async function showCategory(req, res) {
+  const { id } = req.params;
+  try {
+    const category = await Category.findByPk(id);
+
+    if (category) {
+      res.status(200).json(category);
+    } else {
+      res.status(404).json({ message: `No existe la categoria` });
+    }
+  } catch (err) {
+    res.status(404).json(err);
+  }
+}
+//agregar una categoria
+async function storeCategory(req, res) {
+  if (req.body) {
+    const newProduct = await Category.create(req.body);
+    res.status(200).json(newProduct);
+  } else {
+    res
+      .status(400)
+      .json({ message: "Oucrrio un error al momento de crear la categoria" });
+  }
+}
+//actualizar categorias
+async function updateCategory(req, res) {
+  const { id } = req.params;
+
+  try {
+    const editCategory = await Category.findOne({ where: { id: id } });
+
+    if (editCategory) {
+      editCategory.update(req.body);
+      res.status(200).json(editCategory);
+    } else {
+      res.status(404).json({ message: `No existe la categoria indicada` });
+    }
+  } catch (err) {
+    res.status(404).json(err);
+  }
+}
+//eliminar categorias
+async function destroyCategory(req, res) {
+  try {
+    const { id } = req.params;
+    const category = await Category.findByPk(id);
+    if (category) {
+      await Category.destroy({
+        where: { id: id },
+      });
+      res.status(200).json({ message: `La categoria fue eliminado` });
+    } else {
+      res.status(404).json({ message: "La categoria indicado no existe" });
+    }
+  } catch (err) {
+    res.status(404).json({ message: "Categoria no encontrada o incorrecta" });
+  }
+}
 module.exports = {
   index,
   show,
@@ -105,4 +179,9 @@ module.exports = {
   store,
   destroyProduct,
   updateProduct,
+  indexCategories,
+  showCategory,
+  storeCategory,
+  updateCategory,
+  destroyCategory,
 };
