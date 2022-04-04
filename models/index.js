@@ -12,11 +12,13 @@ const sequelize = new Sequelize(
 );
 
 const Category = require("./Category")(sequelize, Model);
+const Adress = require("./Adress")(sequelize, Model);
 const Product = require("./Product")(sequelize, Model);
 const User = require("./User")(sequelize, Model);
 const Order = require("./Order")(sequelize, Model);
 
 User.hasMany(Order);
+User.hasMany(Adress);
 Order.belongsTo(User);
 Category.hasMany(Product);
 Product.belongsTo(Category);
