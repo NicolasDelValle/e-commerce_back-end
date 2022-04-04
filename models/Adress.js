@@ -19,7 +19,7 @@ module.exports = (sequelize, Model) => {
       city: {
         type: DataTypes.STRING,
       },
-      adress: {
+      address: {
         type: DataTypes.STRING,
       },
       number: {
