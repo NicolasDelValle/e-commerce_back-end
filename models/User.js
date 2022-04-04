@@ -33,10 +33,6 @@ module.exports = (sequelize, Model) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      address: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       phone: {
         type: DataTypes.BIGINT,
         allowNull: false,

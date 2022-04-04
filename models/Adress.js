@@ -10,6 +10,9 @@ module.exports = (sequelize, Model) => {
         primaryKey: true,
         autoIncrement: true,
       },
+      name: {
+        type: DataTypes.STRING,
+      },
       city: {
         type: DataTypes.STRING,
       },

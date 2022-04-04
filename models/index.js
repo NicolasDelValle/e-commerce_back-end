@@ -23,4 +23,4 @@ Order.belongsTo(User);
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
-module.exports = { sequelize, User, Product, Category, Order };
+module.exports = { sequelize, User, Product, Category, Adress, Order };
