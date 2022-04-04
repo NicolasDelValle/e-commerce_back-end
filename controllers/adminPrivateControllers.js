@@ -1,4 +1,7 @@
+const { createClient } = require("@supabase/supabase-js");
 const { User, Product, Category } = require("../models");
+const fs = require("fs");
+const formidable = require("formidable");
 
 async function index(req, res) {
   const users = await User.findAll();
@@ -56,13 +59,42 @@ async function destroyUser(req, res) {
 }
 
 async function store(req, res) {
-  if (req.body) {
-    const newProduct = await Product.create(req.body);
-    res.status(200).json(newProduct);
-  } else {
+  try {
+    const form = formidable({
+      multiples: false,
+
+      keepExtensions: true,
+    });
+    form.parse(req, async (err, fields, files) => {
+      const supabase = createClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_KEY
+      );
+
+      const newFileName = files.imageUrl.newFilename;
+      const { data, error } = await supabase.storage
+        .from("images")
+        .upload(newFileName, fs.createReadStream(files.imageUrl.filepath), {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: files.imageUrl.mimetype,
+        });
+
+      await Product.create({
+        ...fields,
+        imageUrl: files.imageUrl.newFilename,
+      });
+      if (error) {
+        res.status(400).json({
+          message: "Ocurrio un error al momento de crear el producto",
+        });
+      }
+      res.json({ fields, files });
+    });
+  } catch (error) {
     res
       .status(400)
-      .json({ message: "Oucrrio un error al momento de crear el producto" });
+      .json({ message: "Ocurrio un error al momento de crear el producto" });
   }
 }
 
