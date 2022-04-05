@@ -15,10 +15,11 @@ const Category = require("./Category")(sequelize, Model);
 const Product = require("./Product")(sequelize, Model);
 const User = require("./User")(sequelize, Model);
 const Order = require("./Order")(sequelize, Model);
+const NewRelease = require("./NewRelease")(sequelize, Model);
 
 User.hasMany(Order);
 Order.belongsTo(User);
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
-module.exports = { sequelize, User, Product, Category, Order };
+module.exports = { sequelize, User, Product, Category, Order, NewRelease };

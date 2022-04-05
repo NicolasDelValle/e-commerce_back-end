@@ -1,9 +1,14 @@
-const { Product, User, Category } = require("../models");
+const { Product, User, Category, NewRelease } = require("../models");
 
 async function showProducts(req, res) {
   const products = await Product.findAll();
 
   res.json(products);
+}
+async function showNewRelease(req, res) {
+  const newRelease = await NewRelease.findAll();
+
+  res.json(newRelease[Math.floor(Math.random() * data.length)]);
 }
 
 async function showCategories(req, res) {
@@ -46,4 +51,10 @@ async function register(req, res) {
   }
 }
 
-module.exports = { showProducts, showProduct, register, showCategories };
+module.exports = {
+  showProducts,
+  showProduct,
+  register,
+  showCategories,
+  showNewRelease,
+};
