@@ -1,4 +1,4 @@
-const { Order, Product, User } = require("../models");
+const { Order, Product, User, Adress } = require("../models");
 
 async function index(req, res) {
   const orders = await Order.findAll({ where: { userId: req.user.id } });
@@ -47,4 +47,24 @@ async function store(req, res) {
   }
 }
 
-module.exports = { index, show, store };
+async function getAdresses(req, res) {
+  const adresses = await Adress.findAll({ where: { userId: req.user.id } });
+  if (adresses) {
+    res.status(200).json(adresses);
+  } else {
+    res.status(404).json("Ocurrio un error");
+  }
+}
+
+async function postAdress(req, res) {
+  if (req.body) {
+    const newAdress = await Adress.create(req.body);
+    res.status(200).json(newAdress);
+  } else {
+    res
+      .status(400)
+      .json({ message: "Oucrrio un error al momento de crear el producto" });
+  }
+}
+
+module.exports = { index, show, store, getAdresses, postAdress };
