@@ -9,7 +9,7 @@ async function index(req, res) {
   }
 }
 
-async function show(req, res) {
+async function getUserOrders(req, res) {
   const { id } = req.params;
   const order = await Order.findOne({ where: { id: id, userId: req.user.id } });
 
@@ -22,27 +22,23 @@ async function show(req, res) {
 
 async function postOrder(req, res) {
   const { id } = req.user;
-  console.log(req.user);
+  const { productList, address, totalPrice } = req.body;
   try {
-    if (req.body) {
-      const user = await User.findByPk(id);
-      let precioTotal = 0;
-      for (const order of req.body.orderList) {
-        precioTotal += order.price;
-        console.log(precioTotal);
-      }
+    const user = await User.findByPk(id);
+    console.log("desde la llamada: ", user);
+    const userName = user.dataValues.firstname + " " + user.dataValues.lastname;
 
-      const newOrder = await Order.create({
-        productList: [{ ...req.body.orderList }],
-        userId: user.id,
-        address: user.address,
-        totalPrice: precioTotal,
-      });
+    const newOrder = await Order.create({
+      productList: productList,
+      userName: userName,
+      address: address,
+      totalPrice: totalPrice,
+      userId: user.id,
+    });
 
-      res.status(200).json(newOrder);
-    }
-    res.status(404).json("Ocurrio un error");
+    res.status(200).json(newOrder);
   } catch (error) {
+    res.status(404).json("Ocurrio un error");
     console.log(error);
   }
 }
@@ -82,7 +78,7 @@ async function destroyAddress(req, res) {
 
 module.exports = {
   index,
-  show,
+  getUserOrders,
   postOrder,
   getAddresses,
   postAddress,
