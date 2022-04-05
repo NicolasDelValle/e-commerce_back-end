@@ -47,7 +47,7 @@ async function store(req, res) {
   }
 }
 
-async function getAdresses(req, res) {
+async function getAddresses(req, res) {
   const adresses = await Adress.findAll({ where: { userId: req.user.id } });
   if (adresses) {
     res.status(200).json(adresses);
@@ -56,7 +56,7 @@ async function getAdresses(req, res) {
   }
 }
 
-async function postAdress(req, res) {
+async function postAddress(req, res) {
   if (req.body) {
     const newAdress = await Adress.create(req.body);
     res.status(200).json(newAdress);
@@ -67,4 +67,23 @@ async function postAdress(req, res) {
   }
 }
 
-module.exports = { index, show, store, getAdresses, postAdress };
+async function destroyAddress(req, res) {
+  const { id } = req.body;
+  try {
+    const addressDeleted = await Adress.destroy({ where: { id: id } });
+    res.status(200).json({
+      message: "La siguente dirreccion fue eleiminada: " + addressDeleted,
+    });
+  } catch (error) {
+    res.status(404).json({ message: "Algo malo paso D:" + error });
+  }
+}
+
+module.exports = {
+  index,
+  show,
+  store,
+  getAddresses,
+  postAddress,
+  destroyAddress,
+};

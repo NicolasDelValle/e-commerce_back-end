@@ -4,8 +4,9 @@ const {
   index,
   show,
   store,
-  getAdresses,
-  postAdress,
+  getAddresses,
+  postAddress,
+  destroyAddress,
 } = require("../../controllers/userPrivateControllers");
 const checkJwt = require("express-jwt");
 userRouter.use(
@@ -19,8 +20,10 @@ userRouter.get("/orders/:id", show);
 //Realizar un pedido
 userRouter.post("/orders", store);
 //retorna todas las direcciones de un usuario
-userRouter.get("/adress", getAdresses);
+userRouter.get("/address", getAddresses);
 //ingresa una nueva direccion
-userRouter.post("/adress", postAdress);
+userRouter.post("/address", postAddress);
+//borra una dirreccion
+userRouter.delete("/address", destroyAddress);
 
 module.exports = userRouter;
