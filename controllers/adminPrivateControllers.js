@@ -3,6 +3,7 @@ const { User, Product, Category } = require("../models");
 const fs = require("fs");
 const formidable = require("formidable");
 
+//Lista de todos los usuarios
 async function index(req, res) {
   const users = await User.findAll();
   if (users) {
@@ -11,7 +12,7 @@ async function index(req, res) {
     res.status(404).json("No se ha encontrado la lista de usuarios indicado");
   }
 }
-
+//un solo usuario
 async function show(req, res) {
   const { id } = req.params;
   const user = await User.findByPk(id);
@@ -21,6 +22,8 @@ async function show(req, res) {
     res.status(404).json("No se ha encontrado el usuario indicado");
   }
 }
+
+//actualizar usuario
 async function updateUser(req, res) {
   const { id } = req.params;
   try {
@@ -39,6 +42,7 @@ async function updateUser(req, res) {
   }
 }
 
+//eliminar usuario
 async function destroyUser(req, res) {
   try {
     const { id } = req.params;
@@ -58,6 +62,7 @@ async function destroyUser(req, res) {
   }
 }
 
+//crear un producto
 async function store(req, res) {
   try {
     const form = formidable({
@@ -97,7 +102,7 @@ async function store(req, res) {
       .json({ message: "Ocurrio un error al momento de crear el producto" });
   }
 }
-
+//eliminar producto
 async function destroyProduct(req, res) {
   const { slug } = req.params;
 
@@ -112,7 +117,7 @@ async function destroyProduct(req, res) {
     res.status(404).json({ message: "Producto no encontrado" });
   }
 }
-
+//actualizar producto
 async function updateProduct(req, res) {
   const { slug } = req.params;
 
