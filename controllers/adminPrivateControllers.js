@@ -67,7 +67,6 @@ async function store(req, res) {
   try {
     const form = formidable({
       multiples: false,
-
       keepExtensions: true,
     });
     form.parse(req, async (err, fields, files) => {
@@ -84,9 +83,11 @@ async function store(req, res) {
           upsert: false,
           contentType: files.imageUrl.mimetype,
         });
+      const details = fields.details.split(";");
 
-      await Product.create({
+      const newProduct = await Product.create({
         ...fields,
+        details: details,
         imageUrl: files.imageUrl.newFilename,
       });
       if (error) {
@@ -94,7 +95,8 @@ async function store(req, res) {
           message: "Ocurrio un error al momento de crear el producto",
         });
       }
-      res.json({ fields, files });
+
+      res.json(newProduct);
     });
   } catch (error) {
     res
