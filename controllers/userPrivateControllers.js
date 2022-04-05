@@ -1,4 +1,4 @@
-const { Order, Product, User, Adress } = require("../models");
+const { Order, Product, User, Address } = require("../models");
 
 async function index(req, res) {
   const orders = await Order.findAll({ where: { userId: req.user.id } });
