@@ -47,19 +47,19 @@ async function store(req, res) {
   }
 }
 
-async function getAdresses(req, res) {
-  const adresses = await Adress.findAll({ where: { userId: req.user.id } });
-  if (adresses) {
-    res.status(200).json(adresses);
+async function getAddresses(req, res) {
+  const addresses = await Address.findAll({ where: { userId: req.user.id } });
+  if (addresses) {
+    res.status(200).json(addresses);
   } else {
     res.status(404).json("Ocurrio un error");
   }
 }
 
-async function postAdress(req, res) {
+async function postAddress(req, res) {
   if (req.body) {
-    const newAdress = await Adress.create(req.body);
-    res.status(200).json(newAdress);
+    const newAddress = await Address.create(req.body);
+    res.status(200).json(newAddress);
   } else {
     res
       .status(400)
@@ -67,4 +67,4 @@ async function postAdress(req, res) {
   }
 }
 
-module.exports = { index, show, store, getAdresses, postAdress };
+module.exports = { index, show, store, getAddresses, postAddress };
