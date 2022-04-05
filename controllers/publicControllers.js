@@ -8,7 +8,7 @@ async function showProducts(req, res) {
 async function showNewRelease(req, res) {
   const newRelease = await NewRelease.findAll();
 
-  res.json(newRelease[Math.floor(Math.random() * data.length)]);
+  res.json(newRelease[Math.floor(Math.random() * newRelease.length)]);
 }
 
 async function showCategories(req, res) {
