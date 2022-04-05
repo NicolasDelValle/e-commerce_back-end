@@ -3,7 +3,7 @@ const userRouter = express.Router();
 const {
   index,
   show,
-  store,
+  postOrder,
   getAddresses,
   postAddress,
   destroyAddress,
@@ -17,7 +17,7 @@ userRouter.get("/orders", index);
 // Muestra un pedido
 userRouter.get("/orders/:id", show);
 //Realizar un pedido
-userRouter.post("/orders", store);
+userRouter.post("/orders", postOrder);
 //retorna todas las direcciones de un usuario
 userRouter.get("/address", getAddresses);
 //ingresa una nueva direccion

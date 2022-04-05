@@ -20,9 +20,9 @@ async function show(req, res) {
   }
 }
 
-async function store(req, res) {
+async function postOrder(req, res) {
   const { id } = req.user;
-  console.log(req.body);
+  console.log(req.user);
   try {
     if (req.body) {
       const user = await User.findByPk(id);
@@ -48,7 +48,8 @@ async function store(req, res) {
 }
 
 async function getAddresses(req, res) {
-  const adresses = await Adress.findAll({ where: { userId: req.user.id } });
+  const { id } = req.user;
+  const adresses = await Adress.findAll({ where: { userId: id } });
   if (adresses) {
     res.status(200).json(adresses);
   } else {
@@ -82,7 +83,7 @@ async function destroyAddress(req, res) {
 module.exports = {
   index,
   show,
-  store,
+  postOrder,
   getAddresses,
   postAddress,
   destroyAddress,
