@@ -102,21 +102,6 @@ async function store(req, res) {
       .json({ message: "Ocurrio un error al momento de crear el producto" });
   }
 }
-//eliminar producto
-async function destroyProduct(req, res) {
-  const { slug } = req.params;
-
-  const productDelete = await Product.findOne({ where: { slug: slug } });
-
-  if (productDelete) {
-    const productDelete = await Product.destroy({ where: { slug: slug } });
-    res
-      .status(200)
-      .json({ message: "El siguiente producto fue eliminado" + productDelete });
-  } else {
-    res.status(404).json({ message: "Producto no encontrado" });
-  }
-}
 //actualizar producto
 async function updateProduct(req, res) {
   const { slug } = req.params;
@@ -134,6 +119,22 @@ async function updateProduct(req, res) {
     res.status(404).json(err);
   }
 }
+//eliminar producto
+async function destroyProduct(req, res) {
+  const { slug } = req.params;
+
+  const productDelete = await Product.findOne({ where: { slug: slug } });
+
+  if (productDelete) {
+    const productDelete = await Product.destroy({ where: { slug: slug } });
+    res
+      .status(200)
+      .json({ message: "El siguiente producto fue eliminado" + productDelete });
+  } else {
+    res.status(404).json({ message: "Producto no encontrado" });
+  }
+}
+
 //ver categorias
 async function indexCategories(req, res) {
   try {
