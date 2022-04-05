@@ -58,8 +58,8 @@ async function getAddresses(req, res) {
 
 async function postAddress(req, res) {
   if (req.body) {
-    const newAdress = await Adress.create(req.body);
-    res.status(200).json(newAdress);
+    const newAddress = await Address.create(req.body);
+    res.status(200).json(newAddress);
   } else {
     res
       .status(400)

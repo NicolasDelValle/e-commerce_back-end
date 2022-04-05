@@ -12,15 +12,24 @@ const sequelize = new Sequelize(
 );
 
 const Category = require("./Category")(sequelize, Model);
-const Adress = require("./Adress")(sequelize, Model);
+const Address = require("./Address")(sequelize, Model);
 const Product = require("./Product")(sequelize, Model);
 const User = require("./User")(sequelize, Model);
 const Order = require("./Order")(sequelize, Model);
+const NewRelease = require("./NewRelease")(sequelize, Model);
 
 User.hasMany(Order);
-User.hasMany(Adress);
+User.hasMany(Address);
 Order.belongsTo(User);
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
-module.exports = { sequelize, User, Product, Category, Adress, Order };
+module.exports = {
+  sequelize,
+  User,
+  Product,
+  Category,
+  Order,
+  NewRelease,
+  Address,
+};

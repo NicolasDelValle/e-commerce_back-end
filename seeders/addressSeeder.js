@@ -1,7 +1,7 @@
-const { Adress } = require("../models");
+const { Address } = require("../models");
 
 module.exports = async () => {
-  const adress = [
+  const address = [
     {
       name: "Casa",
       state: "Montevideo",
@@ -40,6 +40,6 @@ module.exports = async () => {
     },
   ];
 
-  await Adress.bulkCreate(adress);
+  await Address.bulkCreate(address);
   console.log("[Seeders] Las direcciones fueron creados");
 };

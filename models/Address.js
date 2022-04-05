@@ -1,9 +1,9 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize, Model) => {
-  class Adress extends Model {}
+  class Address extends Model {}
 
-  Adress.init(
+  Address.init(
     {
       id: {
         type: DataTypes.BIGINT.UNSIGNED,
@@ -31,9 +31,9 @@ module.exports = (sequelize, Model) => {
     },
     {
       sequelize,
-      modelName: "adress",
+      modelName: "address",
     }
   );
 
-  return Adress;
+  return Address;
 };

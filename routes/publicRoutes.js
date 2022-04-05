@@ -5,6 +5,7 @@ const {
   showProducts,
   showProduct,
   register,
+  showNewRelease,
 } = require("../controllers/publicControllers");
 
 const { createToken } = require("../controllers/apiTokenController");
@@ -20,5 +21,6 @@ publicRouter.get("/products", showProducts);
 publicRouter.get("/products/:slug", showProduct);
 
 publicRouter.get("/categories", showCategories);
+publicRouter.get("/newRelease", showNewRelease);
 
 module.exports = publicRouter;
