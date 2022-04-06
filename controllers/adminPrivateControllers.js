@@ -2,6 +2,13 @@ const { createClient } = require("@supabase/supabase-js");
 const { User, Product, Category, Order } = require("../models");
 const fs = require("fs");
 const formidable = require("formidable");
+// function supabaseConfig() {
+//   const supabase = createClient(
+//     process.env.SUPABASE_URL,
+//     process.env.SUPABASE_KEY
+//   );
+//   return supabase;
+// }
 
 //Lista de todos los usuarios
 async function index(req, res) {
@@ -63,19 +70,20 @@ async function destroyUser(req, res) {
 //crear un producto
 async function store(req, res) {
 	try {
-		//almacena todo los datos en la variable form
+		//crea una instancia de fomridable y pasa parametros a la instancia
 		const form = formidable({
 			multiples: false,
 			keepExtensions: true,
 		});
-		//parsea los tipos de datos en fields y archivos
+		//parsea "separa" los tipos de datos en fields y archivos
 		form.parse(req, async (err, fields, files) => {
-			//sube al servidor de supabase
+			//crea una una conexion con el cliente se supabase
 			const supabase = createClient(
 				process.env.SUPABASE_URL,
 				process.env.SUPABASE_KEY
 			);
 			console.log(fields, files);
+			//nombre de la imagen
 			const newFileName = files.imageUrl.newFilename;
 			//?
 			const { data, error } = await supabase.storage
@@ -83,13 +91,13 @@ async function store(req, res) {
 				.upload(newFileName, fs.createReadStream(files.imageUrl.filepath), {
 					cacheControl: "3600",
 					upsert: false,
+					//indica el tipo de contenido
 					contentType: files.imageUrl.mimetype,
 				});
-			// const details = fields.details.split(";");
 
 			const newProduct = await Product.create({
 				...fields,
-				details: fields.details.split(";"),
+				details: fields.details.split(","),
 				imageUrl: files.imageUrl.newFilename,
 			});
 			if (error) {
@@ -110,55 +118,31 @@ async function store(req, res) {
 async function updateProduct(req, res) {
 	const { slug } = req.params;
 
-	try {
+	const form = formidable({
+		multiples: false,
+		keepExtensions: true,
+	});
+	form.parse(req, async (err, fields, files) => {
+		const supabase = createClient(
+			process.env.SUPABASE_URL,
+			process.env.SUPABASE_KEY
+		);
+
 		const productUpdated = await Product.findOne({ where: { slug: slug } });
-		const form = formidable({
-			multiples: false,
-			keepExtensions: true,
-		});
-		form.parse(req, async (err, fields, files) => {
-			const supabase = createClient(
-				process.env.SUPABASE_URL,
-				process.env.SUPABASE_KEY
+
+		await supabase.storage
+			.from("images")
+			.update(
+				productUpdated.imageUrl,
+				fs.createReadStream(files.imageUrl.filepath),
+				{
+					cacheControl: "3600",
+					upsert: false,
+					contentType: files.imageUrl.mimetype,
+				}
 			);
-			const newFileName = files.imageUrl.newFilename;
-
-			const { data, error } = await supabase.storage
-				.from("images")
-				.update(
-					`/${productUpdated.imageUrl}`,
-					fs.createReadStream(files.imageUrl.filepath),
-					{
-						cacheControl: "3600",
-						upsert: false,
-					}
-				);
-			if (error) {
-				res.status(400).json({
-					message:
-						"Ocurrio un error al momento de actualizar la imagen del producto",
-				});
-			}
-			if (productUpdated) {
-				// productUpdated.update(req.body);
-				// res.status(200).json(productUpdated);
-				//
-
-				const updateProduct = await Product.update({
-					...fields,
-					details: fields.details.split(","),
-					imageUrl: files.imageUrl.newFilename,
-				});
-				res.json(updateProduct);
-			} else {
-				res.status(404).json({ message: `No existe producto` });
-			}
-		});
-	} catch (err) {
-		res.status(400).json({
-			message: `Ocurrio un error al momento de editar el producto: ${err}`,
-		});
-	}
+	});
+	res.json({ message: "ok guardado" });
 }
 //eliminar producto
 async function destroyProduct(req, res) {
