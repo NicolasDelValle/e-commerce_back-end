@@ -282,6 +282,27 @@ async function showOrder(req, res) {
 		res.status(404).json(err);
 	}
 }
+
+//actualizar órden
+async function updateOrder(req, res) {
+	const { id } = req.params;
+
+	try {
+		const editOrder = await Order.findByPk(id);
+
+		if (editOrder) {
+			editOrder.update({ status: req.body.status });
+			res.status(200).json(editOrder);
+		} else {
+			res
+				.status(404)
+				.json({ message: `No se ha podido acceder a la órden seleccionada` });
+		}
+	} catch (err) {
+		res.status(404).json(err);
+	}
+}
+
 module.exports = {
 	index,
 	show,
@@ -297,4 +318,5 @@ module.exports = {
 	destroyCategory,
 	indexOrders,
 	showOrder,
+	updateOrder,
 };
