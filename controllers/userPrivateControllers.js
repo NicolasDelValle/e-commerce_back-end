@@ -21,11 +21,11 @@ async function getUserOrders(req, res) {
 }
 
 async function postOrder(req, res) {
+  console.log("este es el body :D ", req.body);
   const { id } = req.user;
   const { productList, address, totalPrice } = req.body;
   try {
     const user = await User.findByPk(id);
-    console.log("desde la llamada: ", user);
     const userName = user.dataValues.firstname + " " + user.dataValues.lastname;
 
     const newOrder = await Order.create({
