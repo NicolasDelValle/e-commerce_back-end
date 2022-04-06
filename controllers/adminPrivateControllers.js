@@ -89,18 +89,17 @@ async function store(req, res) {
       const newFileName = files.imageUrl.newFilename;
       //?
       const { data, error } = await supabase.storage
-        .from("prueba")
+        .from("images")
         .upload(newFileName, fs.createReadStream(files.imageUrl.filepath), {
           cacheControl: "3600",
           upsert: false,
           //indica el tipo de contenido
           contentType: files.imageUrl.mimetype,
         });
-      // const details = fields.details.split(";");
 
       const newProduct = await Product.create({
         ...fields,
-        details: fields.details.split(";"),
+        details: fields.details.split(","),
         imageUrl: files.imageUrl.newFilename,
       });
       if (error) {
@@ -130,12 +129,13 @@ async function updateProduct(req, res) {
       process.env.SUPABASE_URL,
       process.env.SUPABASE_KEY
     );
-    // const productUpdated = await Product.findOne({ where: { slug: slug } });
+
+    const productUpdated = await Product.findOne({ where: { slug: slug } });
 
     await supabase.storage
-      .from("prueba")
+      .from("images")
       .update(
-        "b624c1bcda81cfc31b92f2905.jpg",
+        productUpdated.imageUrl,
         fs.createReadStream(files.imageUrl.filepath),
         {
           cacheControl: "3600",
