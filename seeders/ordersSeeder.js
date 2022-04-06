@@ -7,7 +7,7 @@ module.exports = async () => {
       userName: "juan ernesto",
       status: "Enviado",
       address: "Rivera 1234",
-      totalPrice: 10000,
+      totalPrice: "10000.123",
     },
   ];
 

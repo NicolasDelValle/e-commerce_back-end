@@ -14,6 +14,7 @@ const {
 	updateCategory,
 	destroyCategory,
 	indexOrders,
+	showOrder,
 } = require("../../controllers/adminPrivateControllers");
 const checkJwt = require("express-jwt");
 adminRouter.use(
@@ -50,5 +51,7 @@ adminRouter.delete("/categories", isAdmin, destroyCategory);
 
 //Listar Órdenes
 adminRouter.get("/orders", isAdmin, indexOrders);
+// Ver una Órden
+adminRouter.get("/orders/:id", isAdmin, showOrder);
 
 module.exports = adminRouter;

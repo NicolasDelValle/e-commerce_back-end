@@ -31,7 +31,7 @@ module.exports = (sequelize, Model) => {
         allowNull: false,
       },
       totalPrice: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },
