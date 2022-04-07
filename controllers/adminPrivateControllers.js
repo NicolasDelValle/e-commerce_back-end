@@ -132,7 +132,7 @@ async function updateProduct(req, res) {
     );
 
     const productUpdated = await Product.findOne({ where: { slug: slug } });
-
+    console.log(productUpdated);
     await supabase.storage
       .from("images")
       .update(
@@ -144,8 +144,18 @@ async function updateProduct(req, res) {
           contentType: files.imageUrl.mimetype,
         }
       );
+    const newProduct = await productUpdated.update({
+      ...fields,
+      slug: fields.name.replace(/ /g, "-"),
+      details: fields.details.split(","),
+    });
+    console.log(newProduct);
+    if (newProduct) {
+      res.status(200).json(newProduct);
+    } else {
+      res.status(400).json({ message: "Ocurrio un error" });
+    }
   });
-  res.json({ message: "ok guardado" });
 }
 //eliminar producto
 async function destroyProduct(req, res) {
