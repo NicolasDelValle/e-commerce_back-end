@@ -1,8 +1,8 @@
 const express = require("express");
 const userRouter = express.Router();
 const {
-  index,
   getUserOrders,
+  getUserOrder,
   postOrder,
   getAddresses,
   postAddress,
@@ -13,9 +13,9 @@ userRouter.use(
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] })
 );
 //Retorna el historial de compras
-userRouter.get("/orders", index);
+userRouter.get("/orders", getUserOrders);
 // Muestra un pedido
-userRouter.get("/orders/:id", getUserOrders);
+userRouter.get("/orders/:id", getUserOrder);
 //Realizar un pedido
 userRouter.post("/orders", postOrder);
 //retorna todas las direcciones de un usuario
