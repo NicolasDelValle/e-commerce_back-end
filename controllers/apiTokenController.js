@@ -8,9 +8,9 @@ async function createToken(req, res) {
 
     if (user && (await user.validatePassword(password))) {
       const newToken = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
-      res.json({ newToken, id: user.id, isAdmin: user.isAdmin });
+      res.status(200).json({ newToken, id: user.id, isAdmin: user.isAdmin });
     } else {
-      res.status(401).json({ message: "Ese email o contraseña es incorrecto" });
+      res.status(409).json({ message: "Ese email o contraseña es incorrecto" });
     }
   } catch (error) {
     res.status(401).json({ message: "Ocurrio un error" });
