@@ -148,6 +148,7 @@ async function updateProduct(req, res) {
       ...fields,
       slug: fields.name.replace(/ /g, "-"),
       details: fields.details.split(","),
+      //imageUrl: files.imageUrl.newFilename,
     });
     console.log(newProduct);
     if (newProduct) {
