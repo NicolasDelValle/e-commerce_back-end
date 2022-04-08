@@ -6,7 +6,11 @@ const APP_PORT = process.env.APP_PORT || 4100;
 const app = express();
 const cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 
 routes(app);
