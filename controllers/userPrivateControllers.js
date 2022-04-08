@@ -1,7 +1,7 @@
 const { Order, Product, User, Address } = require("../models");
 
 async function getUserOrders(req, res) {
-  console.log("esto es la req");
+  console.log("GetUserOrders: ", req.user);
   const orders = await Order.findAll({ where: { userId: req.user.id } });
   if (orders) {
     res.status(200).json(orders);
@@ -22,7 +22,6 @@ async function getUserOrder(req, res) {
 }
 
 async function postOrder(req, res) {
-  console.log("este es el body :D ", req.body);
   const { id } = req.user;
   const { productList, address, totalPrice } = req.body;
   try {
