@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(bodyParser.urlencoded({ extended: true }));
 routes(app);
 
-dbInitialSetup(); // Comentar para no correr DB cada vez.
+//dbInitialSetup(); // Comentar para no correr DB cada vez.
 
 app.listen(APP_PORT, () =>
   console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}!\n`)
