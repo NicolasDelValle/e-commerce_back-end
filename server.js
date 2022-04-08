@@ -12,6 +12,6 @@ app.use(express.json());
 routes(app);
 //dbInitialSetup(); // Comentar para no correr DB cada vez.
 
-app.listen(APP_PORT, () =>
+app.listen(PORT, () =>
   console.log(`\n[Express] Servidor corriendo en el puerto ${PORT}!\n`)
 );
