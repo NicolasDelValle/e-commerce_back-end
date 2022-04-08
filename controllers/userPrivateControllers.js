@@ -23,6 +23,7 @@ async function getUserOrder(req, res) {
 
 async function postOrder(req, res) {
   const { id } = req.user;
+  console.log(req.user);
   const { productList, address, totalPrice } = req.body;
   try {
     const user = await User.findByPk(id);
