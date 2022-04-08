@@ -12,13 +12,13 @@ module.exports = async () => {
       userId: 1,
     },
     {
-      name: "Casa Juan",
+      name: "Casa",
       state: "Montevideo",
       city: "Montevideo",
       address: "LA.de herrera",
       number: "43",
       postalCode: "11900",
-      userId: 3,
+      userId: 2,
     },
     {
       name: "Trabajo",
@@ -36,7 +36,7 @@ module.exports = async () => {
       address: "Rivera, Bulevar",
       number: "303",
       postalCode: "11900",
-      userId: 2,
+      userId: 4,
     },
   ];
 
