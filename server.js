@@ -10,6 +10,8 @@ app.use(cors());
 app.use(express.json());
 
 routes(app);
+
+//.
 //dbInitialSetup(); // Comentar para no correr DB cada vez.
 
 app.listen(PORT, () =>
